@@ -1,0 +1,178 @@
+//Program #1 runs a for loop running through to a specified value of the fibonacci sequence.//
+
+They think its all over
+
+	float prev <- 0, curr <- 1, fibonacci <- 0, float count <- 0, float numterms;
+
+	print "Enter the number of terms: ";
+	numterms <- input;
+	print newline, "Fibonacci Series: ";
+
+	for (count < numterms : count inc 1)
+	do
+    		if(count <= 1)
+    		do
+        		fibonacci <- count;
+    		end
+    		else
+    		do
+        		fibonacci <- curr + prev;
+        		prev <- curr;
+        		curr <- fibonacci;
+    		end
+    	print fibonacci, " ";
+	end
+
+It is now!
+
+//Program #2 runs a bubble sort on an array of numbers.//
+
+They think its all over
+
+	float arr[] <- (32, 43.98, 1, 4.4, 2130);
+	float x <- 0;
+	float size <- Size(arr);
+	arr <- Bubble(arr)
+	print "Array after bubble sort: ";
+	for (x < size : count inc 1)
+	do
+		print arr.at(x);
+	end
+
+	float Bubble[](float arr[])
+	do
+    		float temp, i <- 1, j <- 0;
+    		float size <- Size(arr);
+    		for(i < size : i inc 1)
+    		do
+        		for(j < size-i : j inc 1)
+        		do
+            			if(arr.at(j)>arr.at(j+1))
+            			do
+                			temp <- arr.at(j);
+                			arr.at(j) <- arr.at(j+1);
+                			arr.at(j+1) <- temp;
+            			end
+        		end
+    		end
+    		return arr;
+	end
+
+	float Size(float arr[])
+	do
+   		float count <- 0;
+   		while(arr.at[count] != null)
+    		do
+        		count inc 1;
+    		end
+    		return size;
+	end
+
+It is now!
+
+//Program #3 asks the user for their first and last names then concatenates them into one string and reverses it.//
+
+They think its all over
+
+	string first, last, fullname, reversed;
+	print "What is your first name? ";
+	first <- input;
+	print newline, "What is your last name? ";
+	second <- input;
+
+	fullname <- first + " " + second;
+	reversed <- Reverse(fullname);
+
+	print <- newline, fullname, " reversed is: ", reversed;
+
+	string Reverse(string fullname)
+	do
+    		char temp;
+    		float i <- 0;
+    		float size <- Size(fullname);
+    		for(i < size : i inc 1)
+    		do
+        		temp <- fullname.at(i);
+        		fullname.at(i) <- fullname.at(size-1-i);
+        		fullname.at(size-1-i) <- temp;
+    		end
+    		return fullname;
+	end
+
+	float Size(string fullname)
+	do
+    		float count <- 0;
+    		while(fullname.at[count] != null)
+    		do
+        		count inc 1;
+    		end
+    		return size;
+	end
+
+It is now!
+
+//Program #4 tells you the amount of days in any given month.//
+
+They think its all over
+
+	print "Enter any month (1-12): ";
+	float mon <- input;
+
+	if(mon = 1)
+	do
+		print "January has 31 days.", newline;
+	end
+	elseif(mon = 2)
+	do
+    		print "February has 28 (or sometimes 29) days.", newline;
+	end
+	elseif(mon = 3)
+	do
+    		print "March has 31 days.", newline;
+	end
+	elseif(mon = 4)
+	do
+    		print "April has 30 days.", newline;
+	end
+	elseif(mon = 5)
+	do
+    		print "May has 31 days.", newline;
+	end
+	elseif(mon = 6)
+	do
+    		print "June has 30 days.", newline;
+	end
+	elseif(mon = 7)
+	do
+    		print "July has 31 days.", newline;
+	end
+	elseif(mon = 8)
+	do
+    		print "August has 31 days.", newline;
+	end
+	elseif(mon = 9)
+	do
+    		print "September has 30 days.", newline;
+	end
+	elseif(mon = 10)
+	do
+    		print "October has 31 days.", newline;
+	end
+	elseif(mon = 11)
+	do
+    		print "November has 30 days.", newline;
+	end
+	elseif(mon = 12)
+	do
+    		print "December has 31 days.", newline;
+	end
+	elseif(mon <= 0 or mon >=0)
+	do
+    		print "Invalid value entered", newline;
+	end
+	else
+	do
+    		print "Invalid value entered", newline;
+	end
+
+It is now!

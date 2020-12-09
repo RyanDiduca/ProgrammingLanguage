@@ -1,0 +1,221 @@
+grammar ryansgrammar;
+
+PARSER:
+
+program :
+	STARTPHRASE (statement | comment)* ENDPHRASE
+	;
+
+character :
+	LETTER
+	| DIGIT 
+	| COLON 
+	| EQUALS 
+	| DOT 
+	| GT 
+	| LT
+	| QUOT 
+	| COMMA 
+	| SEMI 
+	| LSQBR 
+	| RSQBR 
+	| LBR 
+	| RBR 
+	| PLUS 
+	| DASH 
+	| STAR 
+	| BSLASH
+	;
+
+variable_type : 
+	BOOL 
+	| FLOAT 
+	| STRING
+	;
+
+array_variable : 
+	VAR LSQBR RSQBR
+	;
+
+array_access : 
+	arr_variable DOT 'at' LBR DIGIT RBR
+	;
+
+float :
+	(DIGIT* DOT DIGIT*)
+	;
+
+string : 
+	QUOT character* QUOT
+	;
+	
+bool : 
+	TRUE
+	| FALSE
+	;
+
+compare :
+	(GT | LT | GTE | LTE | EQUALS | NEQUALS)
+	;
+
+operator : 
+	PLUS 
+	| DASH 
+	| STAR 
+	| BSLASH
+	;
+
+bool_expr :
+	(VAR | float) compare (VAR | float | bool)
+	| bool_expr ('and' | 'or') bool_expr
+	;
+
+expr :
+	LBR? (float | VAR) (operator (float | VAR))+ RBR?
+	|
+	;
+
+concatenate_string :
+	VAR ASSIGN (STR | VAR) (PLUS STR | VAR)+
+	;
+
+comment :
+	COMMENT character* COMMENT
+
+statement :
+	assignment_stmt
+	| array_assignment_stmt
+	| print_stmt
+	| for_stmt
+	| alter_value_stmt
+	| while_stmt
+	| if_stmt
+	| elseif_stmt
+	| else_stmt
+	| input_stmt
+	| var_declare_stmt
+	| array_declare_stmt
+	| func_stmt
+	;
+
+assignment_stmt :
+	VAR ASSIGN (VAR | expr | float | string | bool | function) SEMI?
+	;
+
+array_assignment_stmt :
+	array_variable ASSIGN LBR (float | string | bool | character) (COMMA (float | string | bool | character))* SEMI?
+	;
+
+print_stmt :
+	PRINT (string | VAR | NEWLINE) (COMMA string | VAR | NEWLINE)* SEMI
+	;
+
+for_stmt :
+	FOR LBR bool_expr COLON alter_value_stmt RBR DO statement* END
+	;
+
+alter_value_stmt :
+	VAR (INC | DEC) (float | VAR) SEMI?
+	;
+
+while_stmt :
+	WHILE LBR bool_expr RBR DO statement* END
+	;
+
+if_stmt :
+	IF LBR bool_expr RBR DO statement* END
+	;
+
+elseif_stmt :
+	ELSEIF LBR bool_expr RBR DO statement* END
+	;
+
+else_stmt :
+	ELSE DO statement* END
+	;
+
+input_stmt :
+	variable_type? VAR ASSIGN INPUT SEMI
+	;
+
+var_declare_stmt :
+	variable_type (VAR | assignment_stmt) (COMMA VAR | assignment_stmt)* SEMI?
+	;
+
+array_declare_stmt :
+	variable_type (array_variable | (array_assignment_stmt) SEMI?
+	;
+
+
+
+
+function_define :
+	variable_type UPPERCASELETTER LETTER* LBR (variable_type VAR)* RBR									-----------IMPLEMENT DO AND END---------------
+	;
+
+function :
+	UPPERCASELETTER LETTER* LBR VAR* RBR
+	;
+
+function_call :
+	(VAR ASSIGN)? function														----------SORT ASSIGNMENT---------
+	;
+
+
+increments and decrements
+null character at end of strings
+
+LEXER:
+
+DIGIT : (0-9);
+LETTER : (a-zA-Z);
+UPPERCASELETTER : (A-Z);
+LOWERCASELETTER : (a-z);
+EQUALS : '=';
+NEQUALS : '!=';
+DOT : '.';
+GT : '>';
+LT : '<';
+LTE : '<=';
+GTE : '>=';
+QUOT : '"';
+COMMA : ',';
+SEMI : ';';
+LSQBR : '[';
+RSQBR : ']';
+COLON : ':';
+VAR : (a-z)+;
+LBR : '(';
+RBR : ')';
+PLUS : '+';
+DASH : '-';
+STAR : '*';
+BSLASH : '/';
+ASSIGN : '<-';
+WHITESPACE : [' ' | '/t' | '/r' | '/n'] -> skip;
+TRUE : '1';
+FALSE : '0': 
+DO : 'do';	
+END : 'end';
+INC : 'inc';
+DEC : 'dec';
+NEWLINE : 'newline';
+INPUT : 'input';
+PRINT : 'print';
+FOR : 'for';
+WHILE : 'while';
+IF : 'if';
+ELSEIF : 'elseif';
+ELSE : 'else';
+BOOL : 'bool';
+FLOAT : 'float';
+STRING : 'string';
+COMMENT : '//';
+STARTPHRASE : 'They think its all over';
+ENDPHRASE : 'It is now!';
+
+-----------------------------------------------implement size function------------------------------------------------------------------------------
++ 1 or more
+* 0 or more
+? 0 or 1
+-----------SORT VAR TO INCLUDE ARRAYS---------

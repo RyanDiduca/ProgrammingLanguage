@@ -1,0 +1,7 @@
+The first program that i have used to show my language runs a for loop that prints out each value in the fibonacci sequence up until a specified value that the user inputs. This program demonstrates assignment of different values into variables, as well as receiving an input, printing values (with newlines) and if & else statements within a for loop.
+
+The second program that i have created is a bubble sort that sorts an array of float values. This demonstrates several of the same things as the first program, as well as these it shows functions being called and returning values in order to assign them to values. It also demonstrates how to access values within an array.
+
+The third program asks the user for their first and surnames separately before concatenating them into a string and reversing the order of the string, it then outputs both the users\'92 full name and the reverse of it. This program demonstrates the concatenation as well as other string functions in order to manipulate them.
+
+The fourth program asks the user for a number between 1 and 12 corresponding to a month of the year, this is then fed into a series of if and elseif statements that print out the correct data for each month. This shows the if/elseif/else statements as well as some of the boolean operators working in order to produce the correct outcome.
